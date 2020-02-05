@@ -12,8 +12,9 @@ class WidgetList<T extends Widget> extends StatelessWidget {
   Widget build(BuildContext context) {
     ScrollController _scrollController = ScrollController();
     _scrollController.addListener(() {
-      if (_scrollController.position.maxScrollExtent ==
-          _scrollController.position.pixels) {
+      print(_scrollController.position.pixels.round());
+      if ((_scrollController.position.maxScrollExtent.round() - 10) ==
+          _scrollController.position.pixels.round()) {
         onScrollListener();
       }
     });
@@ -21,9 +22,9 @@ class WidgetList<T extends Widget> extends StatelessWidget {
       controller: _scrollController,
       itemCount: widgetList.length,
       itemBuilder: (BuildContext context, int index) => ListItem(
-            model: widgetList[index],
-            progressWidget: _progressWidget,
-          ),
+        model: widgetList[index],
+        progressWidget: _progressWidget,
+      ),
     );
   }
 }
@@ -31,6 +32,7 @@ class WidgetList<T extends Widget> extends StatelessWidget {
 class ListItem<T extends Widget> extends StatelessWidget {
   final T model;
   final Widget progressWidget;
+
   ListItem({Key key, this.model, this.progressWidget});
 
   @override
