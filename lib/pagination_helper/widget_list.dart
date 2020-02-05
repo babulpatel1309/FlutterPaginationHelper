@@ -13,8 +13,8 @@ class WidgetList<T extends Widget> extends StatelessWidget {
     ScrollController _scrollController = ScrollController();
     _scrollController.addListener(() {
       print(_scrollController.position.pixels.round());
-      if ((_scrollController.position.maxScrollExtent.round() - 10) ==
-          _scrollController.position.pixels.round()) {
+      if (_scrollController.position.pixels.round() >=
+          (_scrollController.position.maxScrollExtent.round() - 10)) {
         onScrollListener();
       }
     });
